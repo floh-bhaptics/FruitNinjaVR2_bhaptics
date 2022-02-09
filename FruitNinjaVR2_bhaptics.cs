@@ -43,7 +43,7 @@ namespace FruitNinjaVR2_bhaptics
             public static void Postfix(Bow __instance, Hands.Hand hand)
             {
                 bowHandIsRight = (hand.Side == Platform.ControllerInputBase.HandSide.Right);
-                tactsuitVr.LOG("Grab bow: " + bowHandIsRight.ToString());
+                //tactsuitVr.LOG("Grab bow: " + bowHandIsRight.ToString());
             }
         }
 
@@ -54,7 +54,7 @@ namespace FruitNinjaVR2_bhaptics
             [HarmonyPostfix]
             public static void Postfix(Bow __instance, bool snappedString)
             {
-                tactsuitVr.LOG("FireBow: " + bowHandIsRight.ToString());
+                //tactsuitVr.LOG("FireBow: " + bowHandIsRight.ToString());
                 tactsuitVr.Recoil("Bow", !bowHandIsRight);
             }
         }
@@ -65,7 +65,7 @@ namespace FruitNinjaVR2_bhaptics
             [HarmonyPostfix]
             public static void Postfix(Bomb __instance)
             {
-                tactsuitVr.LOG("BombExplode");
+                //tactsuitVr.LOG("BombExplode");
                 tactsuitVr.PlaybackHaptics("ExplosionBelly");
             }
         }
