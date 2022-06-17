@@ -71,7 +71,7 @@ namespace FruitNinjaVR2_bhaptics
         }
 
 
-        [HarmonyPatch(typeof(Bomb), "Explode", new Type[] { })]
+        [HarmonyPatch(typeof(Bomb), "TriggerBombExplosionEvent", new Type[] { typeof(Bomb.ExplosionReason) })]
         public class bhaptics_BombExplode
         {
             [HarmonyPostfix]
