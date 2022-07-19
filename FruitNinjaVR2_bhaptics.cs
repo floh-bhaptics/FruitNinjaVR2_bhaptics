@@ -30,17 +30,17 @@ namespace FruitNinjaVR2_bhaptics
             [HarmonyPostfix]
             public static void Postfix(Blade __instance)
             {
-                bool isRightHand = (__instance.Hand.m_controller.m_handSide == Platform.ControllerInputBase.HandSide.Right);
+                bool isRightHand = (__instance.Hand.Controller.m_handSide == Platform.ControllerInputBase.HandSide.Right);
                 //tactsuitVr.LOG("Blade collision: " + __instance.Hand.name + " " + isRightHand.ToString() + " " + tipMotion.magnitude.ToString());
                 tactsuitVr.Recoil("Blade", isRightHand);
             }
         }
 
-        [HarmonyPatch(typeof(Bow), "OnBowGrabbed", new Type[] { typeof(Hands.Hand) })]
+        [HarmonyPatch(typeof(Bow), "OnBowGrabbed", new Type[] { typeof(Hands.IHand) })]
         public class bhaptics_BowGrabBow
         {
             [HarmonyPostfix]
-            public static void Postfix(Bow __instance, Hands.Hand hand)
+            public static void Postfix(Bow __instance, Hands.IHand hand)
             {
                 bowHandIsRight = (hand.Side == Platform.ControllerInputBase.HandSide.Right);
                 //tactsuitVr.LOG("Grab bow: " + bowHandIsRight.ToString());
