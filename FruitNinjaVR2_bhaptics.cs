@@ -36,7 +36,7 @@ namespace FruitNinjaVR2_bhaptics
             }
         }
 
-        [HarmonyPatch(typeof(Bow), "OnBowGrabbed", new Type[] { typeof(Hands.IHand) })]
+        [HarmonyPatch(typeof(Bow), "OnBowGrabbed", new Type[] { typeof(IGrabbable), typeof(Hands.IHand) })]
         public class bhaptics_BowGrabBow
         {
             [HarmonyPostfix]
