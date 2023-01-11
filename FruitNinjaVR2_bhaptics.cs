@@ -9,6 +9,10 @@ using HarmonyLib;
 using MyBhapticsTactsuit;
 using UnityEngine;
 
+[assembly: MelonInfo(typeof(FruitNinjaVR2_bhaptics.FruitNinjaVR2_bhaptics), "FruitNinjaVR2_bhaptics", "1.3.1", "Florian Fahrenberger")]
+[assembly: MelonGame("Halfbrick", "Fruit Ninja VR 2")]
+
+
 namespace FruitNinjaVR2_bhaptics
 {
     public class FruitNinjaVR2_bhaptics : MelonMod
