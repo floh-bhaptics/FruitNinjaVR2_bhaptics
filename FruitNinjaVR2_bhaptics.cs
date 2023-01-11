@@ -8,6 +8,7 @@ using MelonLoader;
 using HarmonyLib;
 using MyBhapticsTactsuit;
 using UnityEngine;
+using Il2Cpp;
 
 [assembly: MelonInfo(typeof(FruitNinjaVR2_bhaptics.FruitNinjaVR2_bhaptics), "FruitNinjaVR2_bhaptics", "1.3.1", "Florian Fahrenberger")]
 [assembly: MelonGame("Halfbrick", "Fruit Ninja VR 2")]
@@ -17,12 +18,11 @@ namespace FruitNinjaVR2_bhaptics
 {
     public class FruitNinjaVR2_bhaptics : MelonMod
     {
-        public static TactsuitVR tactsuitVr;
+        public static TactsuitVR tactsuitVr = null!;
         public static bool bowHandIsRight = false;
 
-        public override void OnApplicationStart()
+        public override void OnInitializeMelon()
         {
-            base.OnApplicationStart();
             tactsuitVr = new TactsuitVR();
             tactsuitVr.PlaybackHaptics("HeartBeat");
         }
@@ -34,19 +34,19 @@ namespace FruitNinjaVR2_bhaptics
             [HarmonyPostfix]
             public static void Postfix(Blade __instance)
             {
-                bool isRightHand = (__instance.Hand.Controller.m_handSide == Platform.ControllerInputBase.HandSide.Right);
+                bool isRightHand = (__instance.Hand.Controller.m_handSide == Il2CppPlatform.ControllerInputBase.HandSide.Right);
                 //tactsuitVr.LOG("Blade collision: " + __instance.Hand.name + " " + isRightHand.ToString() + " " + tipMotion.magnitude.ToString());
                 tactsuitVr.Recoil("Blade", isRightHand);
             }
         }
 
-        [HarmonyPatch(typeof(Bow), "OnBowGrabbed", new Type[] { typeof(IGrabbable), typeof(Hands.IHand) })]
+        [HarmonyPatch(typeof(Bow), "OnBowGrabbed", new Type[] { typeof(IGrabbable), typeof(Il2CppHands.IHand) })]
         public class bhaptics_BowGrabBow
         {
             [HarmonyPostfix]
-            public static void Postfix(Bow __instance, Hands.IHand hand)
+            public static void Postfix(Bow __instance, Il2CppHands.IHand hand)
             {
-                bowHandIsRight = (hand.Side == Platform.ControllerInputBase.HandSide.Right);
+                bowHandIsRight = (hand.Side == Il2CppPlatform.ControllerInputBase.HandSide.Right);
                 //tactsuitVr.LOG("Grab bow: " + bowHandIsRight.ToString());
             }
         }
