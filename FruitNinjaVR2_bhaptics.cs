@@ -10,7 +10,7 @@ using MyBhapticsTactsuit;
 using UnityEngine;
 using Il2Cpp;
 
-[assembly: MelonInfo(typeof(FruitNinjaVR2_bhaptics.FruitNinjaVR2_bhaptics), "FruitNinjaVR2_bhaptics", "1.3.1", "Florian Fahrenberger")]
+[assembly: MelonInfo(typeof(FruitNinjaVR2_bhaptics.FruitNinjaVR2_bhaptics), "FruitNinjaVR2_bhaptics", "2.0.0", "Florian Fahrenberger")]
 [assembly: MelonGame("Halfbrick", "Fruit Ninja VR 2")]
 
 
